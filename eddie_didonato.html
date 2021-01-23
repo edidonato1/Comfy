@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      font-family: avenir;
+      color: #5A595C;
+    }
+
+    body,
+    form,
+    #main,
+    #results {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+  <title>Eddie DiDonato</title>
+</head>
+
+<body>
+  <h1>For my friends at <span style="color: #D94B2B">Comfy</span></h1>
+  <h4 style="color: #73BFB8">
+    <a target="_blank" rel="noreferrer" href="https://didonato.io">Eddie DiDonato
+    </a> - Word List Challenge
+  </h4>
+  <p>Thank you for the opportunity. Feel free to <a id="email" href="mailto: edward.f.didonato@gmail.com">reach out</a> with any questions!</p>
+  <form>
+    <label for="text-input">Enter text: </label>
+    <textarea name="text-input" id="input"></textarea>
+  </form>
+  <h3 id="result-title">Your results will appear as you type.</h3>
+  <ul id="results"></ul>
+
+  <script>
+    // Solution 1 - ES6  
+
+    // * begin comment here to switch to backwards compatible solution *
+    const submit = document.querySelector('#submit');
+    const input = document.querySelector('#input');
+    const results = document.querySelector('#results');
+    const head = document.querySelector('#result-title');
+    
+    results.style = ('width: fit-content; padding-inline-start: 0');
+    input.style = ('resize: vertical; width: 375px; height: 100px; padding: 10px');
+    
+    input.addEventListener('keyup', () => {
+      head.innerText = input.value ? 'Your Results: ' : 'Your results will appear as you type.';
+      results.innerHTML = null;
+      let string = input.value;
+      let wordList = wordCounter(string);
+
+      wordList.forEach(item => {
+        let listItem = document.createElement('li');
+        listItem.innerText = item;
+        listItem.style = ('width: 100%; padding: 8px 10px 5px; border-bottom: 1px solid black; list-style-type: none');
+        results.append(listItem);
+      })
+    })
+
+    const wordCounter = str => {
+      let arr = str
+        .replace(/[^\w\s\']/gi, '')
+        .split(' ')
+        .filter(w => w.length);
+
+      return [...new Set(arr.map(word => {
+        let count = 0;
+        arr.forEach(current => {
+          word.toLowerCase() === current.toLowerCase() ? count++ : null;
+        })
+        return `${word.toLowerCase()} = ${count}`;
+      }))]
+    }
+    // * end comment here to switch to backwards compatible solution
+
+    
+    // Solution 2 - backwards compatible: 
+
+    // var submit = document.querySelector('#submit');
+    // var input = document.querySelector('#input');
+    // var results = document.querySelector('#results');
+    // var head = document.querySelector('#result-title');
+
+    // results.style = ('width: fit-content; padding-inline-start: 0');
+    // input.style = ('resize: vertical; width: 375px; height: 100px; padding: 10px');
+
+    // input.addEventListener('keyup',  function() {
+    //   head.innerText = input.value ? 'Your Results: ' : 'Your results will appear as you type.';
+    //   results.innerHTML = null;
+    //   var string = input.value;
+    //   var wordList = wordCounter(string);
+
+    //   wordList.forEach(function(item) {
+    //     let listItem = document.createElement('li');
+    //     listItem.innerText = item;
+    //     listItem.style = ('width: 100%; padding: 8px 10px 5px; border-bottom: 1px solid black; list-style-type: none');
+    //     results.append(listItem);
+    //   })
+    // })
+
+    // function wordCounter(str) {
+    //   var arr = str
+    //     .replace(/[^\w\s\']/gi, '')
+    //     .split(' ');
+    //   var result = []
+    //   arr.forEach(function (word) {
+    //     var count = 0;
+    //     if (word.length) {
+    //       arr.forEach(function (current) {
+    //         word.toLowerCase() === current.toLowerCase() ? count++ : null;
+    //       })
+    //       if (!result.includes(word.toLowerCase() + " = " + count)) {
+    //         result.push(word.toLowerCase() + " = " + count)
+    //       }
+    //     }
+    //   })
+    //   return result
+    // }
+
+  </script>
+</body>
+
+</html>
