@@ -25,10 +25,14 @@
 <body>
   <h1>For my friends at <span style="color: #D94B2B">Comfy</span></h1>
   <h4 style="color: #73BFB8">
-    <a target="_blank" rel="noreferrer" href="https://didonato.io">Eddie DiDonato
-    </a> - Word List Challenge
+    <a target="_blank" rel="noreferrer" href="https://didonato.io">Eddie DiDonato</a>
+    - Word List Challenge
   </h4>
-  <p>Thank you for the opportunity. Feel free to <a id="email" href="mailto: edward.f.didonato@gmail.com">reach out</a> with any questions!</p>
+  <p>
+    Thank you for the opportunity. Feel free to
+    <a id="email" href="mailto: edward.f.didonato@gmail.com"> reach out</a>
+    with any questions!
+  </p>
   <form>
     <label for="text-input">Enter text: </label>
     <textarea name="text-input" id="input"></textarea>
@@ -44,10 +48,10 @@
     const input = document.querySelector('#input');
     const results = document.querySelector('#results');
     const head = document.querySelector('#result-title');
-    
+
     results.style = ('width: fit-content; padding-inline-start: 0');
     input.style = ('resize: vertical; width: 375px; height: 100px; padding: 10px');
-    
+
     input.addEventListener('keyup', () => {
       head.innerText = input.value ? 'Your Results: ' : 'Your results will appear as you type.';
       results.innerHTML = null;
@@ -78,7 +82,7 @@
     }
     // * end comment here to switch to backwards compatible solution
 
-    
+
     // Solution 2 - backwards compatible: 
 
     // var submit = document.querySelector('#submit');
@@ -114,7 +118,7 @@
     //       arr.forEach(function (current) {
     //         word.toLowerCase() === current.toLowerCase() ? count++ : null;
     //       })
-    //       if (!result.includes(word.toLowerCase() + " = " + count)) {
+    //       if (result.indexOf(word.toLowerCase() + " = " + count) === -1) {
     //         result.push(word.toLowerCase() + " = " + count)
     //       }
     //     }
